@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Sanctum\HasApiTokens;
 
 class Pengguna extends Authenticatable
 {
+    use HasApiTokens;
+    
     protected $fillable = ['nama', 'email', 'password', 'terakhir_login'];
 
     protected $hidden = ['password'];

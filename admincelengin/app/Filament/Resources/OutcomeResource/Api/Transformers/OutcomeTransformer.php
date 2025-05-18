@@ -6,10 +6,14 @@ use App\Models\Outcome;
 
 /**
  * @property Outcome $resource
+ * @property-read int $id
+ * @property-read string $nama
+ * @property-read string|null $icon
+ * @property-read \Carbon\Carbon $created_at
+ * @property-read \Carbon\Carbon $updated_at
  */
 class OutcomeTransformer extends JsonResource
 {
-
     /**
      * Transform the resource into an array.
      *
@@ -19,9 +23,11 @@ class OutcomeTransformer extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
-            'nama' => $this->nama,
-            'icon' => $this->icon,
+            'id' => $this->resource->id,
+            'nama' => $this->resource->nama,
+            'icon' => $this->resource->icon ? asset('storage/' . $this->resource->icon) : null,
+            'created_at' => $this->resource->created_at,
+            'updated_at' => $this->resource->updated_at,
         ];
     }
 }
